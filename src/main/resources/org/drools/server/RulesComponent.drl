@@ -1,0 +1,23 @@
+package org.switchyard.quickstarts.rest.binding
+import org.switchyard.Message
+global Message message
+import org.switchyard.quickstarts.rest.binding.SamManager;
+import org.switchyard.quickstarts.rest.binding.DecisionParameter;
+
+global java.util.Map globals
+
+rule "SamManagerDecision"
+    when
+    	DecisionParameter($emisor : emisor, $montoRequested : monto)
+    	$samSelected : SamManager(getMontoEmisor($emisor) != null, getMontoEmisor($emisor) >= $montoRequested, $operations : operations)
+    	not SamManager( getMontoEmisor($emisor) > $samSelected.getMontoEmisor($emisor) )
+    then
+        globals.put("Result", $samSelected);
+        System.out.println("ENTRA REGLA PRINCIPAL");
+end
+
+
+rule "SamManagerDecision4"
+    then
+        System.out.println("ENTRA SIEMPRE");
+end
