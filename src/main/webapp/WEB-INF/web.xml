@@ -8,7 +8,11 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 		<servlet-name>Servlet Name For DroolsServlet</servlet-name>
 		<servlet-class>org.drools.servlet.DroolsServlet</servlet-class>
 	</servlet>
- 
+ 	<servlet>
+		<servlet-name>Init Servlet Name For DroolsServlet</servlet-name>
+		<servlet-class>org.drools.servlet.InitServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Servlet Name For DroolsServlet</servlet-name>
 		<url-pattern>/DroolsServlet</url-pattern>

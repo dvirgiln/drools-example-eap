@@ -1,8 +1,6 @@
-package org.switchyard.quickstarts.rest.binding
-import org.switchyard.Message
-global Message message
-import org.switchyard.quickstarts.rest.binding.SamManager;
-import org.switchyard.quickstarts.rest.binding.DecisionParameter;
+package org.drools.servlet
+import org.drools.servlet.SamManager;
+import org.drools.servlet.DecisionParameter;
 
 global java.util.Map globals
 
@@ -13,7 +11,7 @@ rule "SamManagerDecision"
     	not SamManager( getMontoEmisor($emisor) > $samSelected.getMontoEmisor($emisor) )
     then
         globals.put("Result", $samSelected);
-        System.out.println("ENTRA REGLA PRINCIPAL");
+        System.out.println("ENTRA REGLA PRINCIPAL"+ $samSelected);
 end
 
 

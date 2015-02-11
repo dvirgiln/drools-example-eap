@@ -14,11 +14,17 @@ import org.kie.api.runtime.KieSession;
 public class DroolsServlet extends HttpServlet {
 
     private final static Integer EMISOR_DEFAULT = 5;
+    KieContainer kc;
+
+    @Override
+    public void init() {
+        kc = KieServices.Factory.get().newKieClasspathContainer();
+    }
+
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("Start servlet");
-        KieContainer kc = KieServices.Factory.get().getKieClasspathContainer();
         KieSession ksession = kc.newKieSession("rules-container");
 
         // KnowledgeRuntimeLogger logger =
